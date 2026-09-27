@@ -1,10 +1,10 @@
 
 import MovieCard from './MovieCard'
-function MovieList({movies}) {
+function MovieList({movies,onDelete}) {
   return (
     <div>
       {movies.map((movie)=>(
-        <MovieCard key={movie.id} movie={movie}></MovieCard>
+        <MovieCard key={movie.id} movie={movie} onDelete={onDelete}></MovieCard>
       ))}
     </div>
   )

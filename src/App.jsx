@@ -38,13 +38,18 @@ function handleAdd(newMovie){
   setMovies((prev)=>[...prev, newMovie])
 }
 
+function handleDelete(id){
+  setMovies((prev)=>prev.filter((movie)=>movie.id !== id))
+}
+
   return (
     <>
       <h1>Movie</h1>
       
       <div>
-      <MovieList movies={movies} /> 
+      <MovieList movies={movies} onDelete={handleDelete} /> 
       <MovieForm onAdd={handleAdd}/>
+
       </div>
     </>
   )
