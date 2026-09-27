@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 import MovieList from './MovieList'
+import MovieForm from './MovieForm'
 
 function App() {
   const [movies,setMovies]=useState([{
@@ -33,7 +34,9 @@ watched:false,
 
 }])
 
-
+function handleAdd(newMovie){
+  setMovies((prev)=>[...prev, newMovie])
+}
 
   return (
     <>
@@ -41,6 +44,7 @@ watched:false,
       
       <div>
       <MovieList movies={movies} /> 
+      <MovieForm onAdd={handleAdd}/>
       </div>
     </>
   )
