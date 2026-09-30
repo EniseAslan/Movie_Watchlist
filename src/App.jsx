@@ -11,6 +11,8 @@ function App() {
   ])
   const [filter, setFilter] = useState("all")
 
+  const [form,setForm]=useState({title:"", genre:"",year:""})
+
   function handleAdd(newMovie) {
     setMovies((prev) => [...prev, newMovie])
   }
@@ -41,7 +43,7 @@ function App() {
         <h1 className="text-3xl font-bold text-gray-800 mb-1">Movie Watchlist</h1>
         <p className="text-gray-500 mb-6">{watchedCount} / {movies.length} izlendi</p>
 
-        <MovieForm onAdd={handleAdd} />
+        <MovieForm form={form} onChange={setForm} onAdd={handleAdd} />
 
         <div className="flex gap-2 my-4">
           <button

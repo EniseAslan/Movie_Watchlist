@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-function MovieForm({ onAdd }) {
-  const [form, setForm] = useState({ title: "", genre: "", year: "" })
+function MovieForm({ form, onChange, onAdd }) {
+  
   const [error, setError] = useState("")
 
   function handleSubmit() {
@@ -19,7 +19,7 @@ function MovieForm({ onAdd }) {
       watched: false,
     }
     onAdd(newMovie)
-    setForm({ title: "", genre: "", year: "" })
+    onChange({ title: "", genre: "", year: "" })
   }
 
   return (
@@ -29,21 +29,21 @@ function MovieForm({ onAdd }) {
           type="text"
           placeholder="Film adı"
           value={form.title}
-          onChange={(e) => setForm({ ...form, title: e.target.value })}
+          onChange={(e) => onChange({ ...form, title: e.target.value })}
           className="border border-gray-400 rounded px-2 py-1"
         />
         <input
           type="text"
           placeholder="Tür"
           value={form.genre}
-          onChange={(e) => setForm({ ...form, genre: e.target.value })}
+          onChange={(e) => onChange({ ...form, genre: e.target.value })}
           className="border border-gray-400 rounded px-2 py-1"
         />
         <input
           type="text"
           placeholder="Yıl"
           value={form.year}
-          onChange={(e) => setForm({ ...form, year: e.target.value })}
+          onChange={(e) => onChange({ ...form, year: e.target.value })}
           className="border border-gray-400 rounded px-2 py-1"
         />
         <button
