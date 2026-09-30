@@ -1,47 +1,63 @@
-import { useState } from 'react'
-import './App.css'
-import MovieList from './MovieList'
-import MovieForm from './MovieForm'
+import { useState } from "react";
+import "./App.css";
+import MovieList from "./MovieList";
+import MovieForm from "./MovieForm";
 
 function App() {
   const [movies, setMovies] = useState([
-    { id: 1, title: "Resident Evil", genre: "Horror", year: "2026", watched: true },
+    {
+      id: 1,
+      title: "Resident Evil",
+      genre: "Horror",
+      year: "2026",
+      watched: true,
+    },
     { id: 2, title: "Odyssey", genre: "Action", year: "2026", watched: true },
-    { id: 3, title: "Doctor Strange İn The Multiverse Of Madness", genre: "Adventure", year: "2026", watched: false },
-  ])
-  const [filter, setFilter] = useState("all")
+    {
+      id: 3,
+      title: "Doctor Strange İn The Multiverse Of Madness",
+      genre: "Adventure",
+      year: "2026",
+      watched: false,
+    },
+  ]);
+  const [filter, setFilter] = useState("all");
 
-  const [form,setForm]=useState({title:"", genre:"",year:""})
+  const [form, setForm] = useState({ title: "", genre: "", year: "" });
 
   function handleAdd(newMovie) {
-    setMovies((prev) => [...prev, newMovie])
+    setMovies((prev) => [...prev, newMovie]);
   }
 
   function handleDelete(id) {
-    setMovies((prev) => prev.filter((movie) => movie.id !== id))
+    setMovies((prev) => prev.filter((movie) => movie.id !== id));
   }
 
   function handleToggleWatched(id) {
     setMovies((prev) =>
       prev.map((movie) =>
-        movie.id === id ? { ...movie, watched: !movie.watched } : movie
-      )
-    )
+        movie.id === id ? { ...movie, watched: !movie.watched } : movie,
+      ),
+    );
   }
 
   const filteredMovies = movies.filter((movie) => {
-    if (filter === "watched") return movie.watched
-    if (filter === "unwatched") return !movie.watched
-    return true
-  })
+    if (filter === "watched") return movie.watched;
+    if (filter === "unwatched") return !movie.watched;
+    return true;
+  });
 
-  const watchedCount = movies.filter((movie) => movie.watched).length
+  const watchedCount = movies.filter((movie) => movie.watched).length;
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-1">Movie Watchlist</h1>
-        <p className="text-gray-500 mb-6">{watchedCount} / {movies.length} izlendi</p>
+        <h1 className="text-3xl font-bold text-gray-800 mb-1">
+          Movie Watchlist
+        </h1>
+        <p className="text-gray-500 mb-6">
+          {watchedCount} / {movies.length} izlendi
+        </p>
 
         <MovieForm form={form} onChange={setForm} onAdd={handleAdd} />
 
@@ -73,7 +89,7 @@ function App() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,15 +1,18 @@
-import { useState } from "react"
+import { useState } from "react";
 
 function MovieForm({ form, onChange, onAdd }) {
-  
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   function handleSubmit() {
-    if (form.title.trim() === "" || form.genre.trim() === "" || form.year.trim() === "") {
-      setError("Lütfen tüm alanları doldurun.")
-      return
+    if (
+      form.title.trim() === "" ||
+      form.genre.trim() === "" ||
+      form.year.trim() === ""
+    ) {
+      setError("Lütfen tüm alanları doldurun.");
+      return;
     }
-    setError("")
+    setError("");
 
     const newMovie = {
       id: Date.now(),
@@ -17,9 +20,9 @@ function MovieForm({ form, onChange, onAdd }) {
       genre: form.genre,
       year: form.year,
       watched: false,
-    }
-    onAdd(newMovie)
-    onChange({ title: "", genre: "", year: "" })
+    };
+    onAdd(newMovie);
+    onChange({ title: "", genre: "", year: "" });
   }
 
   return (
@@ -32,13 +35,7 @@ function MovieForm({ form, onChange, onAdd }) {
           onChange={(e) => onChange({ ...form, title: e.target.value })}
           className="border border-gray-400 rounded px-2 py-1"
         />
-        <input
-          type="text"
-          placeholder="Tür"
-          value={form.genre}
-          onChange={(e) => onChange({ ...form, genre: e.target.value })}
-          className="border border-gray-400 rounded px-2 py-1"
-        />
+      
         <input
           type="text"
           placeholder="Yıl"
@@ -46,6 +43,16 @@ function MovieForm({ form, onChange, onAdd }) {
           onChange={(e) => onChange({ ...form, year: e.target.value })}
           className="border border-gray-400 rounded px-2 py-1"
         />
+        <select
+          value={form.genre}
+          onChange={(e) => onChange({ ...form, genre: e.target.value })}
+          className="border border-gray-400 rounded px-2 py-1"
+        >
+          <option value="">Tür seçiniz</option>
+          <option value="Sci-Fi">Sci-fi</option>
+          <option value="Macera">Macera</option>
+          <option value="Gerilim">Gerilim</option>
+        </select>
         <button
           onClick={handleSubmit}
           className="bg-blue-500 text-white px-4 py-1 rounded"
@@ -55,7 +62,7 @@ function MovieForm({ form, onChange, onAdd }) {
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
-  )
+  );
 }
 
-export default MovieForm
+export default MovieForm;
